@@ -19,19 +19,18 @@ public class Offres {
     private String intitule;
     @Column(name = "description")
     private String description;
-    @Column(name = "objectifs")
-    private String objectifs;
     @Column(name = "dateDebut")
     private Date dateDebut;
     @Column(name = "dateFin")
     private Date dateFin;
     @Column(name = "nb_stagiaires")
     private Integer nb_stagiaires;
-    @Column(name = "specialite")
-    private String specialite;
     @Column(name = "nivEtude")
     private String nivEtude;
-    @JsonIgnore
+    @Column(name = "typeStage")
+    private String typeStage;
+    @Column(name = "etatStage")
+    private String etatStage;
     @OneToMany(mappedBy = "offres")
     private List<Candidature> candidatures = new ArrayList<Candidature>();
     @JsonIgnore
