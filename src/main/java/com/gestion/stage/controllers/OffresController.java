@@ -1,7 +1,7 @@
 package com.gestion.stage.controllers;
 
 
-        import com.gestion.stage.models.Offres;
+import com.gestion.stage.models.Offres;
         import com.gestion.stage.models.User;
         import com.gestion.stage.security.services.UserDetailsServiceImpl;
         import com.gestion.stage.service.OffresServiceImp;
@@ -80,5 +80,9 @@ public class OffresController {
         }
 
     }
+
+
+
+
 
 }

@@ -2,6 +2,8 @@ package com.gestion.stage.service;
 
 
 import com.gestion.stage.models.Candidature;
+import com.gestion.stage.models.Offres;
+import com.gestion.stage.models.User;
 import com.gestion.stage.repository.CandidatureRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,15 @@ public class CandidatureServiceImp implements CandidatureService {
     public Candidature updateCandidatureByID(Candidature candidature) {
         return candidatureRepository.saveAndFlush(candidature);
     }
+
+    public boolean existsByUserAndOffre(User user, Offres offre) {
+        return candidatureRepository.existsByUserAndOffres(user, offre);
+    }
+
+    public Candidature getCandidatureById(Long id) {
+        return candidatureRepository.findById(id).orElse(null);
+    }
+
 
     @Override
     public void deleteCandidature(Long id) {
