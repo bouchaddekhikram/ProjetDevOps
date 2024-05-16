@@ -18,6 +18,8 @@ public class Candidature {
     private String etablissement;
     @Column(name = "specialite")
     private String specialite;
+    @Column(name = "etatCandidature")
+    private String etatCandidature;
 
 
     @ManyToOne

@@ -137,8 +137,17 @@ import java.util.List;
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Candidature non trouvée.");
         }
 
-        User user = candidature.getUser();
+
+        candidature.setEtatCandidature("acceptée");
+        candidatureServiceImp.createCandidature(candidature);
+
+
+
         Offres offre = candidature.getOffres();
+        offresServiceImp.updateEtatOffre(offre);
+
+
+        User user = candidature.getUser();
 
         String  subject  = "Condidature Accepté";
         String body = "Cher " + user.getUsername() + "Votre candidature pour le poste de " + offre.getIntitule()
@@ -162,8 +171,16 @@ import java.util.List;
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Candidature non trouvée.");
         }
 
+        candidature.setEtatCandidature("refusée");
+        candidatureServiceImp.createCandidature(candidature);
+
         User user = candidature.getUser();
+
         Offres offre = candidature.getOffres();
+        offresServiceImp.updateEtatOffre(offre);
+
+
+
         String subject  = "Condidature Rejeté";
         String  body= "Cher " + user.getUsername() + "Votre candidature pour le poste de " + offre.getIntitule()
        + ",\n\n" +

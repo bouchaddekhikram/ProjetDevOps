@@ -36,4 +36,18 @@ public class Offres {
     @JsonIgnore
     @ManyToOne
     User user;
+
+
+
+    // Méthode pour mettre à jour l'état de l'offre
+    public void updateEtatStage() {
+        long acceptedCandidatures = candidatures.stream()
+                .filter(c -> "acceptée".equals(c.getEtatCandidature()))
+                .count();
+        if (acceptedCandidatures >= nb_stagiaires) {
+            this.etatStage = "not available";
+        } else {
+            this.etatStage = "available";
+        }
+    }
 }

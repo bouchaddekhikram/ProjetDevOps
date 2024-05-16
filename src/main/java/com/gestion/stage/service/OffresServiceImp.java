@@ -35,4 +35,9 @@ public class OffresServiceImp implements OffresService {
     public void deleteOffre(Long id) {
         offresRepository.deleteById(id);}
 
+    public void updateEtatOffre(Offres offre) {
+        offre.updateEtatStage();
+        offresRepository.save(offre);
+    }
+
 }
