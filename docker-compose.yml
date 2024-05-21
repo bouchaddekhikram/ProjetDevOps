@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: stage
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  imsb:
+    container_name: imsb
+    build:
+      context: .
+      dockerfile: docker/backend/Dockerfile
+    ports:
+      - "8085:8085"
+    environment:
+      PROFILE: dev
+      APP_VERSION: 0.0.1-SNAPSHOT
+      DB_URL: jdbc:mysql://mysql:3306/stage?useSSL=false&allowPublicKeyRetrieval=true
+      DB_USER: root
+      DB_PASSWORD: root_password
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
